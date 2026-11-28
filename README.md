@@ -25,8 +25,8 @@ To install a build from GitHub instead, use the manual steps below.
 
 ### Manual install from GitHub
 
-1. Open the [release](https://github.com/cris7ian/pale-blue-dot-tab/releases/tag/v1.1.0) while signed in to GitHub.
-2. Download `pale-blue-dot-tab-v1.1.0.zip` and extract it to a folder you plan to keep.
+1. Open the [release](https://github.com/cris7ian/pale-blue-dot-tab/releases/tag/v1.2.0) while signed in to GitHub.
+2. Download `pale-blue-dot-tab-v1.2.0.zip` and extract it to a folder you plan to keep.
 3. Open `chrome://extensions`, enable **Developer mode**, and select **Load unpacked**.
 4. Select the extracted `extension` folder.
 5. Open a new tab and select **Keep it** if Chrome asks.
