@@ -63,5 +63,5 @@ For hosting and release details, see [production](docs/production.md).
 - [Open-Meteo](https://open-meteo.com/) for weather and place search, and [Where the ISS at?](https://wheretheiss.at/) for ISS positions.
 - [GeoNames cities5000](https://download.geonames.org/export/dump/) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)) for nearby place labels. The bundled extract retains names and simplified coordinates.
 - [Astronomy Engine](https://github.com/cosinekitty/astronomy) 2.1.19 (MIT) for solar events and lunar phases.
-- [NASA’s Scientific Visualization Studio](https://svs.gsfc.nasa.gov/5001/) for the Moon mosaic, resized and contrast-adjusted.
+- [NASA’s Scientific Visualization Studio](https://svs.gsfc.nasa.gov/5001/) for the Moon mosaic, from which the lunar maria are traced.
 - [Barlow Condensed](https://fonts.google.com/specimen/Barlow+Condensed) and [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono), under the SIL Open Font License.
