@@ -1,0 +1,583 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		72B91E3430BB362400EE1F61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B91E3330BB362400EE1F61 /* AppDelegate.swift */; };
+		72B91E3830BB362400EE1F61 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 72B91E3630BB362400EE1F61 /* Main.html */; };
+		72B91E3A30BB362400EE1F61 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B91E3930BB362400EE1F61 /* Icon.png */; };
+		72B91E3C30BB362400EE1F61 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 72B91E3B30BB362400EE1F61 /* Style.css */; };
+		72B91E3E30BB362400EE1F61 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 72B91E3D30BB362400EE1F61 /* Script.js */; };
+		72B91E4030BB362400EE1F61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B91E3F30BB362400EE1F61 /* ViewController.swift */; };
+		72B91E4330BB362400EE1F61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B91E4130BB362400EE1F61 /* Main.storyboard */; };
+		72B91E4530BB362500EE1F61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72B91E4430BB362500EE1F61 /* Assets.xcassets */; };
+		72B91E4C30BB362500EE1F61 /* Pale Blue Dot Tab Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 72B91E4B30BB362500EE1F61 /* Pale Blue Dot Tab Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		72B91E5130BB362500EE1F61 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B91E5030BB362500EE1F61 /* SafariWebExtensionHandler.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		72B91E4D30BB362500EE1F61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72B91E2830BB362400EE1F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72B91E4A30BB362500EE1F61;
+			remoteInfo = "Pale Blue Dot Tab Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		72B91E5830BB362500EE1F61 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				72B91E4C30BB362500EE1F61 /* Pale Blue Dot Tab Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		72B91E3030BB362400EE1F61 /* Pale Blue Dot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pale Blue Dot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		72B91E3330BB362400EE1F61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		72B91E3730BB362400EE1F61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		72B91E3930BB362400EE1F61 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		72B91E3B30BB362400EE1F61 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		72B91E3D30BB362400EE1F61 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		72B91E3F30BB362400EE1F61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		72B91E4230BB362400EE1F61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72B91E4430BB362500EE1F61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72B91E4630BB362500EE1F61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72B91E4B30BB362500EE1F61 /* Pale Blue Dot Tab Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pale Blue Dot Tab Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		72B91E5030BB362500EE1F61 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		72B91E5230BB362500EE1F61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72B91E2D30BB362400EE1F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		72B91E4830BB362500EE1F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		72B91E2730BB362400EE1F61 = {
+			isa = PBXGroup;
+			children = (
+				72B91E3230BB362400EE1F61 /* Pale Blue Dot Tab */,
+				72B91E4F30BB362500EE1F61 /* Pale Blue Dot Tab Extension */,
+				72B91E3130BB362400EE1F61 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		72B91E3130BB362400EE1F61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72B91E3030BB362400EE1F61 /* Pale Blue Dot.app */,
+				72B91E4B30BB362500EE1F61 /* Pale Blue Dot Tab Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72B91E3230BB362400EE1F61 /* Pale Blue Dot Tab */ = {
+			isa = PBXGroup;
+			children = (
+				72B91E3330BB362400EE1F61 /* AppDelegate.swift */,
+				72B91E3F30BB362400EE1F61 /* ViewController.swift */,
+				72B91E4130BB362400EE1F61 /* Main.storyboard */,
+				72B91E4430BB362500EE1F61 /* Assets.xcassets */,
+				72B91E4630BB362500EE1F61 /* Info.plist */,
+				72B91E3530BB362400EE1F61 /* Resources */,
+			);
+			path = "Pale Blue Dot Tab";
+			sourceTree = "<group>";
+		};
+		72B91E3530BB362400EE1F61 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				72B91E3630BB362400EE1F61 /* Main.html */,
+				72B91E3930BB362400EE1F61 /* Icon.png */,
+				72B91E3B30BB362400EE1F61 /* Style.css */,
+				72B91E3D30BB362400EE1F61 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		72B91E4F30BB362500EE1F61 /* Pale Blue Dot Tab Extension */ = {
+			isa = PBXGroup;
+			children = (
+				72B91E5030BB362500EE1F61 /* SafariWebExtensionHandler.swift */,
+				72B91E5230BB362500EE1F61 /* Info.plist */,
+			);
+			path = "Pale Blue Dot Tab Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72B91E2F30BB362400EE1F61 /* Pale Blue Dot Tab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72B91E5930BB362500EE1F61 /* Build configuration list for PBXNativeTarget "Pale Blue Dot Tab" */;
+			buildPhases = (
+				72B91E2C30BB362400EE1F61 /* Sources */,
+				72B91E2D30BB362400EE1F61 /* Frameworks */,
+				72B91E2E30BB362400EE1F61 /* Resources */,
+				72B91E5830BB362500EE1F61 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				72B91E4E30BB362500EE1F61 /* PBXTargetDependency */,
+			);
+			name = "Pale Blue Dot Tab";
+			productName = "Pale Blue Dot";
+			productReference = 72B91E3030BB362400EE1F61 /* Pale Blue Dot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		72B91E4A30BB362500EE1F61 /* Pale Blue Dot Tab Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72B91E5530BB362500EE1F61 /* Build configuration list for PBXNativeTarget "Pale Blue Dot Tab Extension" */;
+			buildPhases = (
+				72B91E4730BB362500EE1F61 /* Sources */,
+				72B91E4830BB362500EE1F61 /* Frameworks */,
+				72B91E4930BB362500EE1F61 /* Resources */,
+				72B91E6030BB362500EE1F61 /* Stage Web Extension */,
+			);
+			buildRules = (
+			);
+			name = "Pale Blue Dot Tab Extension";
+			productName = "Pale Blue Dot Tab Extension";
+			productReference = 72B91E4B30BB362500EE1F61 /* Pale Blue Dot Tab Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72B91E2830BB362400EE1F61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2710;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					72B91E2F30BB362400EE1F61 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					72B91E4A30BB362500EE1F61 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+				};
+			};
+			buildConfigurationList = 72B91E2B30BB362400EE1F61 /* Build configuration list for PBXProject "Pale Blue Dot Tab" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 72B91E2730BB362400EE1F61;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 72B91E3130BB362400EE1F61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72B91E2F30BB362400EE1F61 /* Pale Blue Dot Tab */,
+				72B91E4A30BB362500EE1F61 /* Pale Blue Dot Tab Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		72B91E2E30BB362400EE1F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				72B91E3A30BB362400EE1F61 /* Icon.png in Resources */,
+				72B91E4330BB362400EE1F61 /* Main.storyboard in Resources */,
+				72B91E3E30BB362400EE1F61 /* Script.js in Resources */,
+				72B91E3830BB362400EE1F61 /* Main.html in Resources */,
+				72B91E4530BB362500EE1F61 /* Assets.xcassets in Resources */,
+				72B91E3C30BB362400EE1F61 /* Style.css in Resources */,
+			);
+		};
+		72B91E4930BB362500EE1F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		72B91E6030BB362500EE1F61 /* Stage Web Extension */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Stage Web Extension";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/python3 -I \"$SRCROOT/stage-extension.py\" \"$SRCROOT/../extension\" \"$SRCROOT/Icons\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72B91E2C30BB362400EE1F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				72B91E4030BB362400EE1F61 /* ViewController.swift in Sources */,
+				72B91E3430BB362400EE1F61 /* AppDelegate.swift in Sources */,
+			);
+		};
+		72B91E4730BB362500EE1F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				72B91E5130BB362500EE1F61 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		72B91E4E30BB362500EE1F61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72B91E4A30BB362500EE1F61 /* Pale Blue Dot Tab Extension */;
+			targetProxy = 72B91E4D30BB362500EE1F61 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		72B91E3630BB362400EE1F61 /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72B91E3730BB362400EE1F61 /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		72B91E4130BB362400EE1F61 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72B91E4230BB362400EE1F61 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		72B91E5330BB362500EE1F61 /* Debug configuration for PBXProject "Pale Blue Dot Tab" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		72B91E5430BB362500EE1F61 /* Release configuration for PBXProject "Pale Blue Dot Tab" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		72B91E5630BB362500EE1F61 /* Debug configuration for PBXNativeTarget "Pale Blue Dot Tab Extension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Pale Blue Dot Tab Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Pale Blue Dot Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.2.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.salsaparapizza.palebluedottab.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		72B91E5730BB362500EE1F61 /* Release configuration for PBXNativeTarget "Pale Blue Dot Tab Extension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Pale Blue Dot Tab Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Pale Blue Dot Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.2.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.salsaparapizza.palebluedottab.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		72B91E5A30BB362500EE1F61 /* Debug configuration for PBXNativeTarget "Pale Blue Dot Tab" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Pale Blue Dot Tab/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Pale Blue Dot";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.salsaparapizza.palebluedottab;
+				PRODUCT_NAME = "Pale Blue Dot";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		72B91E5B30BB362500EE1F61 /* Release configuration for PBXNativeTarget "Pale Blue Dot Tab" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Pale Blue Dot Tab/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Pale Blue Dot";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.salsaparapizza.palebluedottab;
+				PRODUCT_NAME = "Pale Blue Dot";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72B91E2B30BB362400EE1F61 /* Build configuration list for PBXProject "Pale Blue Dot Tab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72B91E5330BB362500EE1F61 /* Debug configuration for PBXProject "Pale Blue Dot Tab" */,
+				72B91E5430BB362500EE1F61 /* Release configuration for PBXProject "Pale Blue Dot Tab" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		72B91E5530BB362500EE1F61 /* Build configuration list for PBXNativeTarget "Pale Blue Dot Tab Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72B91E5630BB362500EE1F61 /* Debug configuration for PBXNativeTarget "Pale Blue Dot Tab Extension" */,
+				72B91E5730BB362500EE1F61 /* Release configuration for PBXNativeTarget "Pale Blue Dot Tab Extension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		72B91E5930BB362500EE1F61 /* Build configuration list for PBXNativeTarget "Pale Blue Dot Tab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72B91E5A30BB362500EE1F61 /* Debug configuration for PBXNativeTarget "Pale Blue Dot Tab" */,
+				72B91E5B30BB362500EE1F61 /* Release configuration for PBXNativeTarget "Pale Blue Dot Tab" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72B91E2830BB362400EE1F61 /* Project object */;
+	validationLevel = 1;
+}

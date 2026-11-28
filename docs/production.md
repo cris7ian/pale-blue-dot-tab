@@ -39,3 +39,21 @@ uv run --with playwright --with pillow python experiments/store/prepare.py \
 ```
 
 Upload the Store ZIP to the existing listing in the Developer Dashboard and submit it for review separately. Do not create a new listing for a name change.
+
+## Safari extension releases
+
+The Safari app in `safari/` is not published yet. It is named Pale Blue Dot; the Chrome extension keeps Pale Blue Dot Tab. Each Xcode build runs `safari/stage-extension.py`, which copies `extension/` into the app and changes only that copy:
+
+- The manifest gets icons and drops Chrome's `geolocation` permission and host permissions. Safari asks for location itself when **Use my location** reads it.
+- After that opt-in, new tabs refresh the saved location with the page's own location permission, since Safari has no geolocation extension permission.
+- Until a place is chosen, the weather starts at the main city of the device's time zone, from `safari/zone-cities.json`. It reads only the time zone, not the device location.
+
+Keep `MARKETING_VERSION` in the Xcode project equal to the manifest `version`; the unit tests check this. To refresh the generated files, run `python3 safari/generate-zone-cities.py` for the time zones and `uv run safari/generate-icons.py --chromium /path/to/chromium` for the icons.
+
+Before the first release:
+
+1. Set the development team and confirm the bundle identifiers (`com.salsaparapizza.palebluedottab` and `.Extension`) in Xcode.
+2. Archive the app in Xcode, then upload it to App Store Connect, or export a notarized Developer ID build.
+3. Update the privacy policy and the App Store privacy details to cover the Safari app, including the weather request for the time zone's city.
+
+An App Store release does not update the Chrome Web Store listing, and a Chrome release does not update the Safari app.
