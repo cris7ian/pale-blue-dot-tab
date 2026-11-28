@@ -30,6 +30,9 @@ def prepare(package, ref):
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
     page_path = package / 'newtab.html'
     source = page_path.read_text()
+    # Current builds include the shared disclosure. Retain support for older tags.
+    if 'id="geo-disclosure"' in source:
+        return manifest
     anchor = '<button type="button" class="locate" id="locate">Use my location</button>'
     assert source.count(anchor) == 1
     policy = '<p class="geo-disclosure" id="geo-disclosure">Approximate coordinates go to Open-Meteo for weather when you allow location access. You can search for a city instead.</p>'

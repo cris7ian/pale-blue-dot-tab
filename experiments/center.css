@@ -63,6 +63,8 @@ html[data-presentation=center] .clock-offset{display:none}
 .city-clock-settings button:hover{background:var(--hover,#eaeaea)}
 #city-clock-list button{border:0;color:var(--quiet)}
 #locate[hidden]{display:none}
+.geo-disclosure{font-size:12px;line-height:1.5;color:var(--quiet);margin:0 0 12px}
+#geo-disclosure:has(+ #locate[hidden]){display:none}
 @media(max-width:850px){
  html[data-presentation=center] .sheet{width:calc(100% - 36px)}
  html[data-presentation=center] .observatory{grid-template-columns:minmax(128px,.43fr) minmax(0,1fr) minmax(108px,.39fr);column-gap:3px}

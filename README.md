@@ -35,7 +35,7 @@ To update a manual installation, replace the files in the same folder and select
 
 Choose a city for its weather and solar times, or select **Use my location** to use your device location. Chrome may show a location permission warning during installation, but the extension does not read your location until you opt in. Weather, city search, and live ISS positions need an internet connection. No account or API key is needed to use the extension.
 
-In version 1.1.0, open **Settings → Theme** to choose System, Light, Dark, or one of six color palettes: Gruvbox, Deep Ocean, Tokyo Night, Dracula, Oxblood, and Unit‑01. The extension and website each save your choice in your browser.
+Open **Settings → Theme** to choose System, Light, Dark, or one of six color palettes: Gruvbox, Deep Ocean, Tokyo Night, Dracula, Oxblood, and Unit‑01. The website and extension each save your theme and location in your browser. After you choose **Use my location**, the last approximate location is available even without a fresh reading. Choose a city to remove the saved device location. Settings do not sync between the website and extension.
 
 ## Develop
 

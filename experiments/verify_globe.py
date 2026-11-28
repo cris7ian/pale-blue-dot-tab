@@ -524,6 +524,41 @@ def geo_sun_regression(browser, errors):
     context.close()
 
 
+def remember_preferences(browser, errors):
+    context = browser.new_context(timezone_id='Europe/Madrid',
+        geolocation={'latitude': 41.3874, 'longitude': 2.1686, 'accuracy': 30})
+    mock_providers(context)
+    page = context.new_page()
+    collect_errors(page, errors)
+    url = f'{BASE}globe.html'
+    assert page.goto(url).ok
+    expect(page.locator('#place-name')).to_have_text('Set location')
+    page.locator('#weather-place').click()
+    expect(page.locator('#geo-disclosure')).to_be_visible()
+    context.grant_permissions(['geolocation'], origin=BASE)
+    page.locator('#locate').click()
+    expect(page.locator('#place-name')).to_have_text('Near Barcelona')
+    page.locator('#settings-open').click()
+    page.locator('#theme').select_option('tokyo-night')
+    context.clear_permissions()
+    context.add_init_script('window.locationReads = 0; navigator.geolocation.getCurrentPosition = () => window.locationReads++;')
+    with page.expect_request(lambda request: 'latitude=41.39' in request.url and 'longitude=2.17' in request.url):
+        page.reload()
+        expect(page.locator('#place-name')).to_have_text('Near Barcelona')
+    expect(page.locator('html')).to_have_attribute('data-theme', 'tokyo-night')
+    assert page.evaluate('window.locationReads') == 0
+    second = context.new_page()
+    collect_errors(second, errors)
+    assert second.goto(url).ok
+    expect(second.locator('#place-name')).to_have_text('Near Barcelona')
+    expect(second.locator('html')).to_have_attribute('data-theme', 'tokyo-night')
+    manual_weather(second)
+    assert second.evaluate('localStorage.getItem("home-new-tab.device-home.v1")') is None
+    second.reload()
+    expect(second.locator('#place-name')).to_have_text('Madrid')
+    context.close()
+
+
 def website_links(page):
     install = page.get_by_role('link', name='Install extension', exact=True)
     github = page.get_by_role('link', name='GitHub', exact=True)
@@ -627,6 +662,10 @@ def extension_checks(chromium, browser_args, errors):
             expect(page.locator('#place-name')).to_have_text('Near Barcelona')
             page.reload()
             expect(page.locator('#place-name')).to_have_text('Near Barcelona')
+            ctx.set_geolocation(None)
+            cached = new_tab(ctx, errors)
+            expect(cached.locator('#place-name')).to_have_text('Near Barcelona')
+            cached.close()
             manual_weather(page)
             check(page, 'grid')
             status(page)
@@ -659,6 +698,7 @@ def main():
             early_theme(browser)
             stable_clock(browser)
             geo_sun_regression(browser, errors)
+            remember_preferences(browser, errors)
             city_clock_sort(browser)
             print('Website: responsive layout, themes, globe, solar transitions, and clock reordering')
             if args.proposals:

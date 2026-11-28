@@ -90,7 +90,8 @@
 </div>
 <dialog id="location-dialog" aria-labelledby="location-title">
   <div class="dialog-title"><h2 id="location-title">Location</h2><button type="button" id="location-close" aria-label="Close location selector">×</button></div>
-  <button type="button" class="locate" id="locate">Use my location</button>
+  <p class="geo-disclosure" id="geo-disclosure">Your browser saves your last approximate location. Open-Meteo receives approximate coordinates for weather. Choose a city to remove the saved device location.</p>
+  <button type="button" class="locate" id="locate" aria-describedby="geo-disclosure">Use my location</button>
   <form id="city-search">
     <label for="city-query">City</label>
     <div class="search-row"><input id="city-query" type="search" required autocomplete="off" maxlength="100"><button type="submit">Search</button></div>

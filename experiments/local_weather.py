@@ -110,7 +110,8 @@ def exploring_weather(js: str) -> str:
     js = _replace(js, '      const target = home;', '      const target = displayedPlace();')
     js = _replace(js, '      const zone = home?.zone || deviceZone();\n      if (home) {', '      const view = displayedPlace();\n      const zone = view?.zone || deviceZone();\n      if (view) {')
     js = _replace(js, '{ ...home, zone }', '{ ...view, zone }')
-    js = _replace(js, '''    function locateDevice(current, success, failure) {''', '''    const locationModeKey = 'home-new-tab.location-mode.v1';
+    js = _replace(js, '    let home = readManualHome();', '''    const locationModeKey = 'home-new-tab.location-mode.v1';
+    const deviceHomeKey = 'home-new-tab.device-home.v1';
     function locationMode(value) {
       try {
         if (value) localStorage.setItem(locationModeKey, value);
@@ -118,7 +119,25 @@ def exploring_weather(js: str) -> str:
       } catch { /* Storage may not be available. */ }
     }
 
-    function locateDevice(current, success, failure, precise = false) {''')
+    function readDeviceHome() {
+      if (locationMode() !== 'device') return null;
+      try {
+        const saved = JSON.parse(localStorage.getItem(deviceHomeKey));
+        if (saved && typeof saved.name === 'string' && saved.name.trim() && validCoordinates(saved.lat, saved.lon)) {
+          const name = saved.name === 'Current location' ? 'Last known location' : saved.name;
+          return { name, lat: saved.lat, lon: saved.lon, zone: null, gps: true };
+        }
+      } catch { /* Storage may be unavailable or contain invalid data. */ }
+      return null;
+    }
+
+    function saveDeviceHome({ name, lat, lon }) {
+      try { localStorage.setItem(deviceHomeKey, JSON.stringify({ name, lat, lon })); } catch { /* Keep the in-page location. */ }
+    }
+
+    let home = readDeviceHome() || readManualHome();''')
+    js = _replace(js, '    function locateDevice(current, success, failure) {',
+                  '    function locateDevice(current, success, failure, precise = false) {')
     js = _replace(js, '''        navigator.geolocation.getCurrentPosition(({ coords }) => {
           if (!current()) return;
           if (!validCoordinates(coords.latitude, coords.longitude)) { failure(); return; }
@@ -139,6 +158,12 @@ def exploring_weather(js: str) -> str:
       // read the device location until the user enables it inside Home.
       if (mode === 'manual' || (isExtension && mode !== 'device')) return;
       const version''')
+    js = _replace(js, '      if (granted && current()) locateDevice(current, (next) => selectHome(next), () => {});', '''      if (granted && current()) locateDevice(current, (next) => {
+        if (locationMode() !== mode) return;
+        if (mode === 'device') saveDeviceHome(next);
+        if (home?.gps && home.lat === next.lat && home.lon === next.lon && home.name === next.name) return;
+        selectHome(next);
+      }, () => {});''')
     js = _replace(js, '''      if (isExtension) {
         try {
           const granted = await globalThis.chrome.permissions.request(geolocationPermission);
@@ -147,8 +172,11 @@ def exploring_weather(js: str) -> str:
         } catch { failure(); return; }
       }
       locateDevice(current, (next) => {''', '''      locateDevice(current, (next) => {''')
-    js = _replace(js, '        selectHome(next, true);\n        closeLocation();\n      }, failure);', "        locationMode('device');\n        selectHome(next, true);\n        closeLocation();\n      }, failure, true);")
-    return _replace(js, '            saveManualHome(manual);', "            locationMode('manual');\n            saveManualHome(manual);")
+    js = _replace(js, '        selectHome(next, true);\n        closeLocation();\n      }, failure);',
+                  "        locationMode('device');\n        saveDeviceHome(next);\n        selectHome(next, true);\n        closeLocation();\n      }, failure, true);")
+    return _replace(js, '            saveManualHome(manual);', '''            locationMode('manual');
+            try { localStorage.removeItem(deviceHomeKey); } catch { /* Storage may not be available. */ }
+            saveManualHome(manual);''')
 
 
 HOME_STATE = """    function readManualHome() {

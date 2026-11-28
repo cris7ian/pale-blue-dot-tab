@@ -32,6 +32,7 @@ const app = fs.readFileSync(0, 'utf8');
 const flush = () => new Promise(setImmediate);
 const manualKey = 'local-almanac.manual-home.v1';
 const legacyKey = 'local-almanac.place.v1';
+const deviceKey = 'home-new-tab.device-home.v1';
 const manual = {name: 'Paris', label: 'Paris, France', lat: 48.857, lon: 2.352, zone: 'Europe/Paris'};
 
 class Element {
@@ -110,7 +111,7 @@ function start({grant = 'prompt', extension = false, optIn = false, storage = ne
   };
   vm.runInNewContext(app, {
     document, navigator, window, chrome, Astronomy, URL, URLSearchParams, AbortController,
-    localStorage: {getItem: (key) => storage.get(key), setItem: (key, value) => storage.set(key, value)},
+    localStorage: {getItem: (key) => storage.get(key), setItem: (key, value) => storage.set(key, value), removeItem: (key) => storage.delete(key)},
     setInterval() {}, setTimeout() {}, clearTimeout() {}, matchMedia: () => ({matches: true}),
     async fetch(url, options) {
       requests.push(url);
@@ -148,7 +149,8 @@ const search = async (page) => {
 
 (async () => {
   if (process.argv[1] === 'extension') {
-    const extension = start({extension: true, grant: 'granted'});
+    const storage = new Map();
+    const extension = start({extension: true, grant: 'granted', storage});
     await flush();
     assert.equal(extension.positions.length, 0, 'Chrome permission is not in-app consent');
     assert.equal(extension.forecasts().length, 0);
@@ -159,6 +161,22 @@ const search = async (page) => {
     await flush();
     assert.equal(extension.text('place-name'), 'Current location');
     assert.deepEqual(extension.coords(), [['37.77', '-122.42']]);
+    assert.deepEqual(JSON.parse(storage.get(deviceKey)), {name: 'Current location', lat: 37.77, lon: -122.42});
+    const fallback = start({extension: true, grant: 'granted', storage});
+    await flush();
+    fallback.positions[0].fail({code: 2});
+    assert.equal(fallback.text('place-name'), 'Last known location');
+    assert.deepEqual(fallback.coords(), [['37.77', '-122.42']]);
+    const moved = start({extension: true, grant: 'granted', storage});
+    await flush();
+    moved.positions[0].ok({coords: {latitude: 48.857, longitude: 2.352}});
+    await flush();
+    assert.deepEqual(moved.coords(), [['37.77', '-122.42'], ['48.86', '2.35']]);
+    assert.equal(JSON.parse(storage.get(deviceKey)).lat, 48.86);
+    moved.ui('weather-place').emit('click');
+    await search(moved);
+    assert.equal(storage.has(deviceKey), false);
+    assert.equal(start({extension: true, storage}).text('place-name'), 'Paris');
     return;
   }
   const storage = new Map([[legacyKey, JSON.stringify({name: 'London', lat: 51.5, lon: -0.1, zone: 'Europe/London'})]]);

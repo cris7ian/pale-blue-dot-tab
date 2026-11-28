@@ -87,7 +87,32 @@
       return null;
     }
 
-    let home = readManualHome();
+    const locationModeKey = 'home-new-tab.location-mode.v1';
+    const deviceHomeKey = 'home-new-tab.device-home.v1';
+    function locationMode(value) {
+      try {
+        if (value) localStorage.setItem(locationModeKey, value);
+        else return localStorage.getItem(locationModeKey);
+      } catch { /* Storage may not be available. */ }
+    }
+
+    function readDeviceHome() {
+      if (locationMode() !== 'device') return null;
+      try {
+        const saved = JSON.parse(localStorage.getItem(deviceHomeKey));
+        if (saved && typeof saved.name === 'string' && saved.name.trim() && validCoordinates(saved.lat, saved.lon)) {
+          const name = saved.name === 'Current location' ? 'Last known location' : saved.name;
+          return { name, lat: saved.lat, lon: saved.lon, zone: null, gps: true };
+        }
+      } catch { /* Storage may be unavailable or contain invalid data. */ }
+      return null;
+    }
+
+    function saveDeviceHome({ name, lat, lon }) {
+      try { localStorage.setItem(deviceHomeKey, JSON.stringify({ name, lat, lon })); } catch { /* Keep the in-page location. */ }
+    }
+
+    let home = readDeviceHome() || readManualHome();
     let explored = null;
     const displayedPlace = () => explored || home;
     const defaultView = cities.find((city) => Intl.DateTimeFormat('en', { timeZone: city.zone })
@@ -329,14 +354,6 @@
     const geolocationPermission = { permissions: ['geolocation'] };
     const isExtension = Boolean(globalThis.chrome?.runtime?.id);
 
-    const locationModeKey = 'home-new-tab.location-mode.v1';
-    function locationMode(value) {
-      try {
-        if (value) localStorage.setItem(locationModeKey, value);
-        else return localStorage.getItem(locationModeKey);
-      } catch { /* Storage may not be available. */ }
-    }
-
     function locateDevice(current, success, failure, precise = false) {
       try {
         if (!navigator.geolocation) { failure(); return; }
@@ -364,7 +381,12 @@
         granted = isExtension ? await globalThis.chrome.permissions?.contains(geolocationPermission) :
           (await navigator.permissions?.query({ name: 'geolocation' }))?.state === 'granted';
       } catch { return; }
-      if (granted && current()) locateDevice(current, (next) => selectHome(next), () => {});
+      if (granted && current()) locateDevice(current, (next) => {
+        if (locationMode() !== mode) return;
+        if (mode === 'device') saveDeviceHome(next);
+        if (home?.gps && home.lat === next.lat && home.lon === next.lon && home.name === next.name) return;
+        selectHome(next);
+      }, () => {});
     }
 
     locate.addEventListener('click', async () => {
@@ -382,6 +404,7 @@
       };
       locateDevice(current, (next) => {
         locationMode('device');
+        saveDeviceHome(next);
         selectHome(next, true);
         closeLocation();
       }, failure, true);
@@ -425,6 +448,7 @@
               return;
             }
             locationMode('manual');
+            try { localStorage.removeItem(deviceHomeKey); } catch { /* Storage may not be available. */ }
             saveManualHome(manual);
             selectHome(manual, true);
             closeLocation();

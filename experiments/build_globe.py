@@ -228,6 +228,10 @@ def clock_page(styles, scripts, layout, *, appearance):
     if layout not in ('shoulders', 'meridian', 'inline'):
         raise ValueError(f'Unknown date and time layout: {layout}')
     source = globe_page(styles, scripts, appearance)
+    locate = '<button type="button" class="locate" id="locate">Use my location</button>'
+    disclosure = ('<p class="geo-disclosure" id="geo-disclosure">Your browser saves your last approximate location. '
+                  'Open-Meteo receives approximate coordinates for weather. Choose a city to remove the saved device location.</p>')
+    source = change(source, locate, disclosure + '\n  ' + locate.replace('id="locate"', 'id="locate" aria-describedby="geo-disclosure"'))
     source = change(source, 'data-presentation="center"', f'data-presentation="center" data-clock-layout="{layout}"')
     zone = '<span class="eyebrow zone" id="local-zone"></span>'
     clock = '<div id="local-time" class="local-time"></div>'
