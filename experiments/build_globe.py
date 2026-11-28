@@ -7,6 +7,7 @@ import re
 
 from city_clocks import city_clocks
 from local_weather import exploring_weather, local_weather
+from moon_sky import moon_sky
 from sun_cursor import solar_cursor
 
 HERE = Path(__file__).resolve().parent
@@ -201,23 +202,15 @@ def globe_page(styles, scripts, appearance):
     source = change(source, clocks, '')
     source = change(source, '  </main>', clocks + '\n  </main>')
     source = change(source, '        <div class="section-line"><h2 class="eyebrow" id="atlas-title">World time</h2><span class="figure-index" aria-hidden="true">01</span></div>', '        <h2 id="atlas-title" class="sr-only">World time</h2>')
-    image = b64encode((HERE / 'moon-mosaic.jpg').read_bytes()).decode('ascii')
-    moon = f'''<svg class="lunar-art" viewBox="0 0 128 128" aria-hidden="true">
-      <defs>
-        <clipPath id="moon-disk"><circle cx="64" cy="64" r="49"/></clipPath>
-        <clipPath id="moon-light"><path id="moon-lit" d="M0 0"/></clipPath>
-        <image id="moon-surface" x="15" y="15" width="98" height="98" href="data:image/jpeg;base64,{image}"/>
-      </defs>
-      <g clip-path="url(#moon-disk)">
-        <circle cx="64" cy="64" r="49" fill="#141414"/>
-        <use href="#moon-surface" opacity=".16"/>
-        <g clip-path="url(#moon-light)"><use href="#moon-surface"/></g>
-      </g>
-    </svg>'''
+    # The Moon is drawn as a map on a canvas, like the globe (see moon_sky.py).
+    moon = '<canvas class="lunar-art" id="moon-canvas" width="158" height="158" aria-hidden="true"></canvas>'
     source, count = re.subn(r'<svg class="lunar-art"[\s\S]*?</svg>', lambda _: moon, source)
     if count != 1:
         raise ValueError('Expected one Moon illustration')
-    source = change(source, 'Boundaries by Natural Earth.</p>', 'Boundaries by Natural Earth.</p><p>Moon mosaic by <a href="https://svs.gsfc.nasa.gov/5001/" target="_blank" rel="noopener noreferrer">NASA’s Scientific Visualization Studio</a>. Nearby place labels use a reduced <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> gazetteer (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>).</p>')
+    # The sun cursor's night glyph still draws the current phase from this path.
+    solar = '<svg class="solar-art" viewBox="0 0 320 100" aria-hidden="true" fill="none">'
+    source = change(source, solar, solar + '<defs><path id="moon-lit" d="M0 0"/></defs>')
+    source = change(source, 'Boundaries by Natural Earth.</p>', 'Boundaries by Natural Earth.</p><p>Lunar maria traced from the Moon mosaic by <a href="https://svs.gsfc.nasa.gov/5001/" target="_blank" rel="noopener noreferrer">NASA’s Scientific Visualization Studio</a>. Nearby place labels use a reduced <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> gazetteer (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>).</p>')
     source = change(source, 'aria-label="Data sources" title="Data sources"', 'aria-label="Settings" title="Settings"')
     source = change(source, '<details><summary>Data sources</summary>', '<label for="theme">Theme</label><select id="theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option><optgroup label="Color themes"><option value="gruvbox">Gruvbox</option><option value="deep-ocean">Deep Ocean</option><option value="tokyo-night">Tokyo Night</option><option value="dracula">Dracula</option><option value="oxblood">Oxblood</option><option value="unit-01">Unit‑01</option></optgroup></select><details><summary>Data sources</summary>')
     source = change(source, '<details><summary>Data sources</summary>', CITY_CLOCK_SETTINGS + '<details><summary>Data sources</summary>')
@@ -268,7 +261,7 @@ def main():
     standalone_app = app()
     city_data = b64encode((HERE / 'cities5000.json.gz').read_bytes()).decode('ascii')
     assets['nearby.js'] = change(read(HERE / 'nearby.js'), '/* @CITY_GZIP@ */', city_data)
-    assets['dashboard.js'] = number_effects(city_clocks(solar_cursor(exploring_weather(standalone_app)), change))
+    assets['dashboard.js'] = number_effects(city_clocks(moon_sky(solar_cursor(exploring_weather(standalone_app))), change))
     for previous in ('solar.js', 'year.js'):
         (EXT / previous).unlink(missing_ok=True)
     style = css()

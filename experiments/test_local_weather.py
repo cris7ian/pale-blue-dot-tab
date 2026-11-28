@@ -108,11 +108,13 @@ function start({grant = 'prompt', extension = false, optIn = false, storage = ne
       return {date: new Date(begin.getTime() + (dir > 0 ? 6 : 18) * 3600_000)};
     },
     MoonPhase: () => 0, Illumination: () => ({phase_fraction: 0}),
+    Equator: () => ({ra: 0, dec: 0}), HourAngle: () => 0, Libration: () => ({elat: 0, elon: 0}),
+    RotationAxis: () => ({ra: 0, dec: 90}), GeoVector: () => ({}), EquatorFromVector: () => ({ra: 0, dec: 0}),
   };
   vm.runInNewContext(app, {
     document, navigator, window, chrome, Astronomy, URL, URLSearchParams, AbortController,
     localStorage: {getItem: (key) => storage.get(key), setItem: (key, value) => storage.set(key, value), removeItem: (key) => storage.delete(key)},
-    setInterval() {}, setTimeout() {}, clearTimeout() {}, matchMedia: () => ({matches: true}),
+    setInterval() {}, setTimeout() {}, clearTimeout() {}, requestAnimationFrame() {}, cancelAnimationFrame() {}, matchMedia: () => ({matches: true}),
     async fetch(url, options) {
       requests.push(url);
       if (url.pathname === '/v1/search') return {ok: true, json: async () => ({results: [

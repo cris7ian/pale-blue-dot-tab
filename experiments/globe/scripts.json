@@ -2,5 +2,6 @@
   "d3-array.min.js",
   "d3-geo.min.js",
   "globe-data.js",
+  "moon-data.js",
   "globe.js"
 ]

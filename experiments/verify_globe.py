@@ -17,6 +17,15 @@ BASE = 'http://127.0.0.1:4174/'
 
 HOME = f'{BASE}globe.html'
 PROVIDERS = re.compile(r'^https://(?:(?:api|geocoding-api)\.open-meteo\.com|api\.wheretheiss\.at)/')
+# The Moon canvas shows its traced maria: some opaque pixels, in more than one tone.
+MOON_PAINTED = '''() => {
+  const canvas = document.getElementById('moon-canvas');
+  if (!window.AlmanacMoonData || !canvas.width) return false;
+  const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+  const tones = new Set();
+  for (let i = 0; i < data.length; i += 4) if (data[i + 3] === 255) tones.add(data[i]);
+  return tones.size > 4;
+}'''
 CITIES = {
     'Madrid': ('Spain', 40.42, -3.70, 'Europe/Madrid'),
     'Kathmandu': ('Nepal', 27.7172, 85.324, 'Asia/Kathmandu'),
@@ -226,7 +235,7 @@ def website_layout(browser, errors, screenshots):
                 target = page.locator(selector).bounding_box()
                 assert target['height'] >= 44
         website_links(page)
-        expect(page.locator('#moon-surface')).to_have_attribute('href', re.compile(r'^data:image/jpeg;base64,'))
+        assert page.evaluate(MOON_PAINTED), 'The Moon map is drawn'
         screenshot(page, f'globe-{width}', screenshots)
         if width != 320:
             city_rotation(page)
