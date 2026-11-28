@@ -55,6 +55,17 @@ uv run --with playwright python experiments/verify_globe.py --chromium /path/to/
 
 The browser tests cover the shipped web layout and the Chrome new-tab override. They mock weather, city search, and ISS by default. Add `--proposals` to check alternate layouts, `--screenshots` to save images, or `--live [URL]` to check the live providers against the local preview or a deployed page.
 
+### Safari extension
+
+The Xcode project in `safari/` wraps `extension/` in a Mac app named Pale Blue Dot. Each build copies `extension/` into the app, so build the extension first. With Xcode installed, build an unsigned copy for your own Mac:
+
+```sh
+xcodebuild -project "safari/Pale Blue Dot Tab.xcodeproj" -scheme "Pale Blue Dot Tab" -derivedDataPath safari/build build
+open "safari/build/Build/Products/Debug/Pale Blue Dot.app"
+```
+
+Then, in Safari, choose **Settings → Advanced → Show features for web developers**, choose **Develop → Developer Settings → Allow unsigned extensions**, and turn on Pale Blue Dot in **Settings → Extensions**. Safari turns unsigned extensions off again when it quits. If the extension is missing after you turn the setting back on, register it again with `pluginkit -a "$PWD/safari/build/Build/Products/Debug/Pale Blue Dot.app/Contents/PlugIns/Pale Blue Dot Tab Extension.appex"`.
+
 For hosting and release details, see [production](docs/production.md).
 
 ## Credits

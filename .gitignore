@@ -4,3 +4,5 @@
 /experiments/artifacts/
 __pycache__/
 .DS_Store
+/safari/build/
+xcuserdata/
